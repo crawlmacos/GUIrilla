@@ -53,9 +53,9 @@ chmod +x ./run_me.sh ./run_me_bulk.sh
 
 ## ⚙️ Configuration Options
 
-The crawler can be controlled via several flags to modify its behavior:
 ![System Overview](images/crawler.png)
 
+The crawler can be controlled via several flags to modify its behavior:
 
 ### 🧠 1. GPT-4 Assistance (Optional)
 
@@ -76,13 +76,13 @@ This is useful for building raw interaction graphs or debugging the UI crawling 
 ### 🕔 4. Maximal duration of parsing
 
 The -q argument controls the maximal duration of time used by GUIrilla crawler for parsing.
-It should be specified in minutes, and is an upper boundary for processing a single application.
+It should be specified in minutes and is an upper boundary for processing a single application.
 
 ---
 
 ## 📁 Input Format
 
-For bulk runs, provide a `app_details.txt` file formatted like:
+For bulk runs, provide an `app_details.txt` file formatted like:
 
 ```
 Calculator,com.apple.calculator,,os
