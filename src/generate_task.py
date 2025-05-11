@@ -15,14 +15,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
-PROMPT_PATH = './agents/tinytask_prompt.txt'
+PROMPT_PATH = './src/agents/tinytask_prompt.txt'
 with open("config_open_ai.env", "r") as f:
     API_KEY = f.read().strip()
 
 # Read the saved prompt
 with open(PROMPT_PATH, 'r') as prompt_file:
     prompt_text = prompt_file.read()
+
 
 def check_need_to_repredict_mini_tasks(graph):
     if isinstance(graph, dict):
@@ -44,19 +44,20 @@ def check_need_to_repredict_mini_tasks(graph):
                 return True
     return True
 
+
 def parse_tasks(graph, image_name=None):
     """Recursively parse the JSON-like graph structure to extract tasks, associated image names, and represent fields."""
     tasks = []
-    
+
     if isinstance(graph, dict):
         # Update the image name if found at the current level
         if 'image_name' in graph and graph['image_name']:
-            if "2025" in graph['image_name']:
+            if "2025" in graph['image_name'] or "images" in graph['image_name']:
                 image_name = graph['image_name']
                 image_name = image_name.split("/")[-1]
             else:
                 image_name = graph['image_name']
-        
+
         # Check if there is a task string in this node and 'represent' has 'position' and 'size'
         if 'task_string' in graph and graph['task_string']:
             represent = graph.get("represent")
@@ -74,20 +75,22 @@ def parse_tasks(graph, image_name=None):
                         "size_width": int(size.get("width", 0)),
                         "size_height": int(size.get("height", 0))  # Using 'heght' as is, assuming typo in example data
                     })
-        
+
         # Recursively parse children or nested structures
         for key, value in graph.items():
             tasks.extend(parse_tasks(value, image_name))
-            
+
     elif isinstance(graph, list):
         for item in graph:
             tasks.extend(parse_tasks(item, image_name))
-    
+
     return tasks
+
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
+
 
 def process_tasks(FOLDER_PATH, df, max_retries=5, delay_between_retries=1):
     """Process tasks with OpenAI API and return the results."""
@@ -98,27 +101,27 @@ def process_tasks(FOLDER_PATH, df, max_retries=5, delay_between_retries=1):
     except KeyError:
         logger.error("No 'image_name' column found in the DataFrame. Please ensure the column exists.")
         return results
-    
+
     # Iterate over each group
     for image_name, group in grouped:
         # Reset index to prepare sequential IDs
         group = group.reset_index(drop=True)
         id_mapping = {original_id: idx + 1 for idx, original_id in enumerate(group['id'])}
-        
+
         # Prepare task list string
         tasks_str = "\n".join(f"{id_mapping[row['id']]}: {row['task_string']}" for _, row in group.iterrows())
-        
+
         # Prepare prompt with tasks
         prompt_with_tasks = f"{prompt_text}\n\nTasks:\n{tasks_str}"
 
         # Encode the image
         if "cropped" in image_name:
-            image_name = image_name[:-12]+".png"
+            image_name = image_name[:-12] + ".png"
         image_path = FOLDER_PATH + image_name
         base64_image = encode_image(image_path)
 
         logger.info(f"Processing tasks for image: {image_name}")
-        
+
         # Prepare payload for OpenAI API
         payload = {
             "model": "gpt-4o-mini",
@@ -172,6 +175,7 @@ def process_tasks(FOLDER_PATH, df, max_retries=5, delay_between_retries=1):
         })
     return results
 
+
 def update_data_json(graph, df):
     """Recursively add 'processed_task_string' to each task in the JSON-like structure based on DataFrame predictions."""
     if isinstance(graph, dict):
@@ -194,12 +198,12 @@ def update_data_json(graph, df):
 
     return graph
 
+
 if __name__ == '__main__':
     # Get the root directory for data.json files
     arg_parser = argparse.ArgumentParser(description="Parse -a argument")
     arg_parser.add_argument("-a", type=str, help="The application bundle identifier")
     args = arg_parser.parse_args()
-
     app = applications.app_for_description_details(args.a)
 
     json_path = f"./output/{app.bundle_id}/graph/data.json"
@@ -213,8 +217,10 @@ if __name__ == '__main__':
     with open(json_path, 'r') as file:
         graph = json.load(file)
 
-    re_predict_mini_tasks = check_need_to_repredict_mini_tasks(graph)
+    print("Loaded graph", graph.keys())
 
+    re_predict_mini_tasks = check_need_to_repredict_mini_tasks(graph)
+    
     if re_predict_mini_tasks:
         print(f"Re-predicting tasks for {app.bundle_id}")
         # Save tasks to a DataFrame
