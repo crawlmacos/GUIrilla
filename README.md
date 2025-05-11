@@ -23,6 +23,7 @@ This repository contains the codebase for the paper **"GUIrilla: A Scalable Fram
 python3.11 -m venv parser_venv
 source parser_venv/bin/activate
 pip install -r requirements.txt
+chmod +x ./run_me.sh ./run_me_bulk.sh
 ```
 
 ---
