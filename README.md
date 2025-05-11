@@ -32,13 +32,13 @@ pip install -r requirements.txt
 ### 🔹 Single App Processing
 
 ```bash
-./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -t True -q 120
+./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -l False -q 1
 ```
 
 ### 🔹 Bulk App Processing
 
 ```bash
-./run_me_bulk.sh -i app_details_small.txt -o ./output -m /Path/to/mas
+./run_me_bulk.sh -i app_details_small.txt -o ./output -m /Path/to/mas -l False
 ```
 
 ---
