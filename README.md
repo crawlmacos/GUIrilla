@@ -55,13 +55,13 @@ chmod +x ./run_me.sh ./run_me_bulk.sh
 ### 🔹 Single App Processing
 
 ```bash
-./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -l False -q 5
+./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -l False -q 5 -t True
 ```
 
 ### 🔹 Bulk App Processing
 
 ```bash
-./run_me_bulk.sh -i app_details_small.txt -o ./output -m /Path/to/mas -l False
+./run_me_bulk.sh -i app_details_small.txt -o ./output -m /Path/to/mas -l False 
 ```
 
 ---
