@@ -9,12 +9,19 @@ This repository contains the codebase for the paper **"GUIrilla: A Scalable Fram
 ---
 
 ## 🔧 Requirements
-- macOS 13.2 or higher  
-- Python 3.11 
-- [OpenAI API Key](https://platform.openai.com/account/api-keys) *(optional, set in `config_open_ai.env`)*  
-- macOS System Pass Key *(set in `config_system_pass.env`)*  
-- installed MacAppStore command line tool as a [mas file](https://github.com/mas-cli/mas/tree/main) *(optional: for applications that you would like to be automatically installed)*.
 
+- **macOS**: Version 13.2 or later  
+- **Python**: Version 3.11  
+- **OpenAI API Key** *(optional)*: Set in `config_open_ai.env`  
+  [Get your key here](https://platform.openai.com/account/api-keys)  
+- **macOS System Pass Key**: Set in `config_system_pass.env`  
+- **Mac App Store CLI (`mas`)** *(optional)*: Required for automatic app installation  
+  - Install via [mas GitHub page](https://github.com/mas-cli/mas)  
+  - Or run:  
+    ```bash
+    brew install mas
+    ```
+  - Then set `-m /Path/to/mas` to simply `mas`
 ---
 
 ## ⚙️ Installation
