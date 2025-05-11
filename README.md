@@ -117,5 +117,5 @@ Outputs include segmented UI graphs, screenshots, and logs, stored in the specif
 Run the following command to postprocess the tasks with GPT-4 based Task Agent and add `processed_task` key to a task graph:
 
 ```bash
-python src/generate_task.py -a com.apple.stocks
+python src/generate_task.py -a Calculator,com.apple.calculator,,os
 ```
