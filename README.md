@@ -55,7 +55,7 @@ chmod +x ./run_me.sh ./run_me_bulk.sh
 ### 🔹 Single App Processing
 
 ```bash
-./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -l False -q 1
+./run_me.sh -a 'Calculator,com.apple.calculator,,os' -o ./output -m /Path/to/mas -h False -c False -l False -q 5
 ```
 
 ### 🔹 Bulk App Processing
@@ -90,8 +90,8 @@ This is useful for building raw interaction graphs or debugging the UI crawling 
 
 ### 🕔 4. Maximal duration of parsing
 
-The -q argument controls the maximal duration of time used by GUIrilla crawler for parsing.
-It should be specified in minutes and is an upper boundary for processing a single application.
+The `-q` argument controls the maximal duration of time used by GUIrilla crawler for parsing.
+It should be specified in minutes and is an upper bound on the time for processing a single application. By default, it is set to 120 minutes.
 
 ---
 
