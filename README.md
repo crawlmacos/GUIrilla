@@ -3,7 +3,7 @@
   GUIrilla: A Scalable Framework for Automated Desktop UI Exploration
 </h1>
 
-This repository contains the codebase for the paper **"GUIrilla: A Scalable Framework for Automated Desktop UI Exploration"**. It implements a fully automated system for interacting with macOS applications and organizes the data about UI changes upon interaction in a graph.
+This repository contains the codebase for the paper **"GUIrilla: A Scalable Framework for Automated Desktop UI Exploration"**. It implements a fully automated system for exploring macOS applications by interacting with their user interfaces and capturing the resulting UI changes. These interactions are structured into a graph-based representation, enabling the scalable collection of tasks across macOS applications in different domains.
 ![Output](images/tree-screenshots.png)
 
 ---
