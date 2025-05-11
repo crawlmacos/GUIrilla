@@ -22,6 +22,21 @@ This repository contains the codebase for the paper **"GUIrilla: A Scalable Fram
     brew install mas
     ```
   - Then set `-m /Path/to/mas` to simply `mas`
+    
+---
+
+## 🛡️ Accessibility Permissions
+
+➡️ Ensure the Python interpreter has Accessibility access:
+
+**System Settings > Privacy & Security > Accessibility**
+
+Add the following:
+
+- Terminal 
+- Python (or your IDE, e.g., PyCharm or VS Code)  
+- Any GUI runner you use
+
 ---
 
 ## ⚙️ Installation
