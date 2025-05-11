@@ -197,13 +197,14 @@ def update_data_json(graph, df):
 if __name__ == '__main__':
     # Get the root directory for data.json files
     arg_parser = argparse.ArgumentParser(description="Parse -a argument")
+    arg_parser.add_argument("-p", type=str, help="The path to the collected data folder")
     arg_parser.add_argument("-a", type=str, help="The application bundle identifier")
     args = arg_parser.parse_args()
 
     app = applications.app_for_description_details(args.a)
 
-    json_path = f"./output/{app.bundle_id}/graph/data.json"
-    image_dir = f"./output/{app.bundle_id}/graph/images/"
+    json_path = f"./output/{args.p}/{app.bundle_id}/graph/data.json"
+    image_dir = f"./output/{args.p}/{app.bundle_id}/graph/images/"
 
     # Parse tasks from the current data.json file
     if not os.path.exists(json_path):
