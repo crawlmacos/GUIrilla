@@ -118,3 +118,6 @@ Run the following command to postprocess the tasks with GPT-4 based Task Agent a
 ```bash
 python src/generate_task.py -a Calculator,com.apple.calculator,,os
 ```
+---
+## License 
+This project is licensed under the MIT License. The LICENSE file will be updated upon de-anonymisation.
