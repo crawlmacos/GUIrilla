@@ -120,4 +120,4 @@ python src/generate_task.py -a Calculator,com.apple.calculator,,os
 ```
 ---
 ## License 
-This project is licensed under the MIT License. The LICENSE file will be updated upon de-anonymisation.
+This project is licensed under the MIT License. The [LICENSE](LICENSE) file will be updated upon de-anonymisation.
