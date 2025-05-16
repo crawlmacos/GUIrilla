@@ -8,6 +8,17 @@ This repository contains the codebase for the paper **"GUIrilla: A Scalable Fram
 
 ---
 
+## Dataset and models
+
+[GUIrilla-Task dataset on HuggingFace](https://huggingface.co/datasets/GUIrilla/GUIrilla-Task).
+
+**Models:**
+* [GUIrilla-See-0.7B on HuggingFace](https://huggingface.co/GUIrilla/GUIrilla-See-0.7B).
+* [GUIrilla-See-3B on HuggingFace](https://huggingface.co/GUIrilla/GUIrilla-See-3B).
+* [GUIrilla-See-7B on HuggingFace](https://huggingface.co/GUIrilla/GUIrilla-See-7B).
+  
+___
+
 ## 🔧 Requirements
 
 - **macOS**: Version 13.2 or later  
